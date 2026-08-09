@@ -34,11 +34,11 @@ external_components:
     components: [dometic_cfx_ble]
 
 # Optional: INA226 current sensor on the 12V supply line
-i2c:
-  sda: GPIO4
-  scl: GPIO5
-  scan: true
-  frequency: 10000 Hz
+#i2c:
+#  sda: GPIO4
+#  scl: GPIO5
+#  scan: true
+#  frequency: 10000 Hz
 
 esp32_ble_tracker:
   scan_parameters:
@@ -74,32 +74,32 @@ button:
 
 sensor:
   # INA226 current sensor (optional, remove if not present)
-  - platform: ina226
-    address: 0x40
-    shunt_resistance: 0.002 ohm
-    current:
-      name: "Kühlbox Strom"
-      id: cfx_strom
-      unit_of_measurement: A
-    update_interval: 5s
+#  - platform: ina226
+#    address: 0x40
+#    shunt_resistance: 0.002 ohm
+#    current:
+#      name: "Kühlbox Strom"
+#      id: cfx_strom
+#      unit_of_measurement: A
+#    update_interval: 5s
 
-  - platform: template
-    name: "Kühlbox Leistung"
-    unit_of_measurement: W
-    device_class: power
-    state_class: measurement
-    accuracy_decimals: 1
-    lambda: |-
-      float v = id(cfx_spannung).state;
-      float i = id(cfx_strom).state;
-      if (!isnan(v) && !isnan(i) && v > 0) {
-        return v * i;
-      }
-      if (!isnan(i)) {
-        return 12.0f * i;  // fallback to 12V nominal
-      }
-      return 0.0f;
-    update_interval: 5s
+#  - platform: template
+#    name: "Kühlbox Leistung"
+#    unit_of_measurement: W
+#    device_class: power
+#    state_class: measurement
+#    accuracy_decimals: 1
+#    lambda: |-
+#      float v = id(cfx_spannung).state;
+#      float i = id(cfx_strom).state;
+#      if (!isnan(v) && !isnan(i) && v > 0) {
+#        return v * i;
+#      }
+#      if (!isnan(i)) {
+#        return 12.0f * i;  // fallback to 12V nominal
+#      }
+#      return 0.0f;
+#    update_interval: 5s
 
   - platform: dometic_cfx_ble
     dometic_cfx_ble_id: dometic_cfx_ble1
