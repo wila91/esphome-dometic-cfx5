@@ -1,5 +1,9 @@
 #pragma once
 
+#include "esphome/components/sensor/sensor.h"
+#include "esphome/components/binary_sensor/binary_sensor.h"
+#include "esphome/components/text_sensor/text_sensor.h"
+
 #include "esphome/core/component.h"
 #include "esphome/core/hal.h"
 #include "esphome/core/log.h"
@@ -25,6 +29,38 @@
 
 namespace esphome {
 namespace dometic_cfx_ble {
+
+class DometicCfxBle; // Forward declaration so the sensors know about the main hub
+
+class DometicCfxBleSensor : public sensor::Sensor, public Component {
+ public:
+  void set_parent(DometicCfxBle *parent) { this->parent_ = parent; }
+  void set_type(const std::string &type) { this->type_ = type; }
+  std::string get_type() const { return this->type_; }
+ protected:
+  DometicCfxBle *parent_;
+  std::string type_;
+};
+
+class DometicCfxBleBinarySensor : public binary_sensor::BinarySensor, public Component {
+ public:
+  void set_parent(DometicCfxBle *parent) { this->parent_ = parent; }
+  void set_type(const std::string &type) { this->type_ = type; }
+  std::string get_type() const { return this->type_; }
+ protected:
+  DometicCfxBle *parent_;
+  std::string type_;
+};
+
+class DometicCfxBleTextSensor : public text_sensor::TextSensor, public Component {
+ public:
+  void set_parent(DometicCfxBle *parent) { this->parent_ = parent; }
+  void set_type(const std::string &type) { this->type_ = type; }
+  std::string get_type() const { return this->type_; }
+ protected:
+  DometicCfxBle *parent_;
+  std::string type_;
+};
 
 static const char *const TAG = "dometic_cfx_ble";
 
