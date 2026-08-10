@@ -13,16 +13,16 @@ Reverse engineered from BLE HCI snoop logs. The component communicates using Dom
 
 | Entity | Type | Description |
 |---|---|---|
-| CFX Kühlbox | Climate | Current + target temperature, on/off control |
-| CFX Tür offen | Binary sensor | Door open/closed state |
-| CFX Tür-Alarm | Binary sensor | Door open > 3 min alarm |
-| CFX Batteriespannung | Sensor | Battery/supply voltage (V) |
-| CFX Ist-Temperatur | Sensor | Measured compartment temperature (°C) |
+| CFX Fridge | Climate | Current + target temperature, on/off control |
+| CFX Door Open | Binary sensor | Door open/closed state |
+| CFX Door Alarm | Binary sensor | Door open > 3 min alarm |
+| CFX Battery Voltage | Sensor | Battery/supply voltage (V) |
+| CFX Actual Temperature | Sensor | Measured compartment temperature (°C) |
 | CFX Firmware | Text sensor | Firmware version string |
-| CFX Stromquelle | Text sensor | Power source: AC or DC |
+| CFX Power Source | Text sensor | Power source: AC or DC |
 | CFX5 Re-Pair | Button | Clear BLE bond and reboot |
-| Kühlbox Strom | Sensor | DC current draw (INA226) |
-| Kühlbox Leistung | Sensor | Calculated power in Watts |
+| Fridge Current | Sensor | DC current draw (INA226) |
+| Fridge Power | Sensor | Calculated power in Watts |
 
 ## Installation
 
