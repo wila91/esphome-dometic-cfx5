@@ -136,17 +136,17 @@ def entity_schema(platform):
     if platform == "sensor":
         base.update(
             {
-                CONF_UNIT_OF_MEASUREMENT: cv.string,
-                CONF_ACCURACY_DECIMALS: cv.int_,
+                cv.Optional(CONF_UNIT_OF_MEASUREMENT): cv.string,
+                cv.Optional(CONF_ACCURACY_DECIMALS): cv.int_,
             }
         )
     if platform == "number":
         base.update(
             {
-                CONF_MIN_VALUE: cv.float_,
-                CONF_MAX_VALUE: cv.float_,
-                CONF_STEP: cv.float_,
-                CONF_UNIT_OF_MEASUREMENT: cv.string,
+                cv.Optional(CONF_MIN_VALUE): cv.float_,
+                cv.Optional(CONF_MAX_VALUE): cv.float_,
+                cv.Optional(CONF_STEP): cv.float_,
+                cv.Optional(CONF_UNIT_OF_MEASUREMENT): cv.string,
             }
         )
     return cv.Schema(base).extend(cv.polling_component_schema("60s"))
