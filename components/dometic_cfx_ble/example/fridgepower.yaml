@@ -78,13 +78,13 @@ sensor:
 #    address: 0x40
 #    shunt_resistance: 0.002 ohm
 #    current:
-#      name: "Kühlbox Strom"
+#      name: "Fridge Current"
 #      id: cfx_strom
 #      unit_of_measurement: A
 #    update_interval: 5s
 
 #  - platform: template
-#    name: "Kühlbox Leistung"
+#    name: "Fridge Power"
 #    unit_of_measurement: W
 #    device_class: power
 #    state_class: measurement
@@ -104,7 +104,7 @@ sensor:
   - platform: dometic_cfx_ble
     dometic_cfx_ble_id: dometic_cfx_ble1
     type: COMPARTMENT_0_MEASURED_TEMPERATURE
-    name: "CFX Ist-Temperatur"
+    name: "CFX Actual Temperature"
     unit_of_measurement: "°C"
     accuracy_decimals: 1
     icon: mdi:thermometer
@@ -112,7 +112,7 @@ sensor:
   - platform: dometic_cfx_ble
     dometic_cfx_ble_id: dometic_cfx_ble1
     type: BATTERY_VOLTAGE_LEVEL
-    name: "CFX Batteriespannung"
+    name: "CFX Battery Voltage"
     id: cfx_spannung
     unit_of_measurement: "V"
     accuracy_decimals: 3
@@ -121,20 +121,20 @@ sensor:
 climate:
   - platform: dometic_cfx_ble
     dometic_cfx_ble_id: dometic_cfx_ble1
-    name: "CFX Kühlbox"
+    name: "CFX Fridge"
 
 binary_sensor:
   - platform: dometic_cfx_ble
     dometic_cfx_ble_id: dometic_cfx_ble1
     type: COMPARTMENT_0_DOOR_OPEN
-    name: "CFX Tür offen"
+    name: "CFX Door Open"
     device_class: door
     icon: mdi:door-open
 
   - platform: dometic_cfx_ble
     dometic_cfx_ble_id: dometic_cfx_ble1
     type: DOOR_ALERT
-    name: "CFX Tür-Alarm"
+    name: "CFX Door Alarm"
     device_class: problem
     icon: mdi:alarm-light
 
@@ -148,5 +148,5 @@ text_sensor:
   - platform: dometic_cfx_ble
     dometic_cfx_ble_id: dometic_cfx_ble1
     type: POWER_SOURCE
-    name: "CFX Stromquelle"
+    name: "CFX Power Source"
     icon: mdi:power-plug
