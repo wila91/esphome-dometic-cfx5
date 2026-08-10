@@ -127,7 +127,7 @@ CONFIG_SCHEMA = cv.Schema(
 def entity_schema(platform):
     base = {
         cv.GenerateID(): cv.declare_id(
-            cg.esphome_ns.class_(f"DometicCfxBle{platform.capitalize()}")
+            dometic_cfx_ble_ns.class_(f"DometicCfxBle{platform.capitalize()}", cg.Component)
         ),
         cv.Required(CONF_DOMETIC_CFX_BLE_ID): cv.use_id(DometicCfxBle),
         cv.Required(CONF_TYPE): validate_topic_type,
