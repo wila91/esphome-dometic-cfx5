@@ -548,7 +548,7 @@ climate::ClimateTraits DometicCfxBleClimate::traits() {
   auto traits = climate::ClimateTraits();
   traits.add_feature_flags(climate::CLIMATE_SUPPORTS_CURRENT_TEMPERATURE);
   traits.set_visual_min_temperature(-22.0);
-  traits.set_visual_max_temperature(10.0);
+  traits.set_visual_max_temperature(20.0);
   traits.set_visual_temperature_step(1.0);
   traits.set_supported_modes({
       climate::CLIMATE_MODE_OFF,
