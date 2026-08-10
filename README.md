@@ -82,4 +82,5 @@ Temperatures and voltages are encoded as `int32 LE / 1000`.
 ## License
 
 MIT
+
 This project is a fork and continuation of philippe-a11y/esphome-dometic-cfx5
