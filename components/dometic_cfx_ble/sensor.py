@@ -17,6 +17,8 @@ async def to_code(config):
     await cg.register_component(var, config)
     await sensor.register_sensor(var, config)
 
+
     parent = await cg.get_variable(config[CONF_DOMETIC_CFX_BLE_ID])
     cg.add(var.set_parent(parent))
-    cg.add(var.set_topic(config[CONF_TYPE])) 
+    cg.add(var.set_topic(config[CONF_TYPE]))
+    cg.add(parent.add_entity(config[CONF_TYPE], var))
