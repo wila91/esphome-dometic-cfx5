@@ -130,7 +130,7 @@ def entity_schema(platform):
             cg.esphome_ns.class_(f"DometicCfxBle{platform.capitalize()}")
         ),
         cv.Required(CONF_DOMETIC_CFX_BLE_ID): cv.use_id(DometicCfxBle),
-        cv.Required(CONF_TYPE): TOPIC_TYPES,
+        cv.Required(CONF_TYPE): validate_topic_type,
         cv.Required(CONF_NAME): cv.string,
     }
     if platform == "sensor":
