@@ -548,6 +548,23 @@ bool DometicCfxBle::decode_to_bool_(const std::vector<uint8_t> &bytes) {
   return bytes[0] != 0;
 }
 
+//std::string DometicCfxBle::decode_to_string_(const std::vector<uint8_t> &bytes,
+//                                              const std::string &type_hint) {
+//  if (type_hint == "POWER_SOURCE_TEXT") {
+//    if (bytes.empty()) return "Unknown";
+//    switch (bytes[0]) {
+//      case 0: return "AC";
+//      case 1: return "DC";
+//      case 2: return "Solar";
+//      default: return "Unknown";
+//    }
+//  }
+//  if (bytes.empty()) return "";
+//  size_t end = 0;
+//  while (end < bytes.size() && bytes[end] != 0x00)
+//    end++;
+//  return std::string(reinterpret_cast<const char *>(bytes.data()), end);
+//}
 std::string DometicCfxBle::decode_to_string_(const std::vector<uint8_t> &bytes,
                                               const std::string &type_hint) {
   if (type_hint == "POWER_SOURCE_TEXT") {
@@ -559,15 +576,7 @@ std::string DometicCfxBle::decode_to_string_(const std::vector<uint8_t> &bytes,
       default: return "Unknown";
     }
   }
-  if (bytes.empty()) return "";
-  size_t end = 0;
-  while (end < bytes.size() && bytes[end] != 0x00)
-    end++;
-  return std::string(reinterpret_cast<const char *>(bytes.data()), end);
-}
 
-std::string DometicCfxBle::decode_to_string_(const std::vector<uint8_t> &bytes,
-                                              const std::string &type_hint) {
   if (type_hint == "BATTERY_PROTECTION_TEXT") {
     if (bytes.empty()) return "Unknown";
     switch (bytes[0]) {
@@ -577,7 +586,14 @@ std::string DometicCfxBle::decode_to_string_(const std::vector<uint8_t> &bytes,
       default: return "Unknown";
     }
   }
-  // ... rest of method ...
+
+  if (bytes.empty()) return "";
+  size_t end = 0;
+  while (end < bytes.size() && bytes[end] != 0x00)
+    end++;
+  return std::string(reinterpret_cast<const char *>(bytes.data()), end);
+}
+
 
 // ----------------- Encode ---------------------------------------------------
 
