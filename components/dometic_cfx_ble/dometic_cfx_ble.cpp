@@ -125,7 +125,7 @@ static const uint8_t SUBSCRIBE_ALL[][4] = {
     // DIAGNOSTIC SWEEP — hunting for "battery protection mode".
     // None of these are confirmed. Two sources:
     //  1) Leaf IDs read back from the device's own parameter
-    //     manifest at topic [01 00 00 00] (seen in test3-living-room
+    //     manifest at topic [01 00 00 00] (seen in test3-
     //     log around 22:47:30 — a 132-byte value that decodes into
     //     32 4-byte (p1,p2,p3,p4) tuples, several of which exactly
     //     matched topics already in this file, which is what confirms
