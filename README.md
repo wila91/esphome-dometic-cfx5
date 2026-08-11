@@ -1,5 +1,5 @@
 # esphome-dometic-cfx5
-# Not tested
+
 ESPHome external component for integrating the **Dometic CFX5 portable fridge/freezer** into Home Assistant via BLE (Bluetooth Low Energy).
 
 Reverse engineered from BLE HCI snoop logs. The component communicates using Dometic's proprietary DDM protocol over GATT notifications.
@@ -76,8 +76,8 @@ Temperatures and voltages are encoded as `int32 LE / 1000`.
 
 ## Tested With
 
-- Dometic CFX5 25 (firmware 1.0.1, model MC1)
-- ESP32-S3 DevKitC-1
+- Dometic CFX5 35 firmware 2.0.0, model MC1 (MC1-HMI_2.1.1;MC1-FS_2.0.0;MC1_2.0.0)
+- esp32dev
 
 ## License
 
