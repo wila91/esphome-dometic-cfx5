@@ -22,7 +22,7 @@ Reverse engineered from BLE HCI snoop logs. The component communicates using Dom
 | CFX Power Source | Text sensor | Power source: AC or DC |
 | CFX5 Re-Pair | Button | Clear BLE bond and reboot |
 | Fridge Current | Sensor | DC current draw (INA226) |
-| Fridge Power | Sensor | Calculated power in Watts |
+| Fridge Power | Sensor | Calculated power in Watts (From INA226) |
 
 ## Installation
 
