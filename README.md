@@ -1,4 +1,4 @@
-# esphome-dometic-cfx5
+# ESPHome-Dometic-CFX5
 
 ESPHome external component for integrating the **Dometic CFX5 portable fridge/freezer** into Home Assistant via BLE (Bluetooth Low Energy).
 
