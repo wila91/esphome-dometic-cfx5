@@ -81,6 +81,7 @@ Temperatures and voltages are encoded as `int32 LE / 1000`.
 - Temperature reports and it is possible to change it.
 - Door reports closed/open
 - AC power reports right
+-  Firmware same as app reports
 - <img width="420" height="603" alt="CFX5 35" src="https://github.com/user-attachments/assets/aa0cf48e-d234-4db8-8625-c369b90e5eec" />
 
 
