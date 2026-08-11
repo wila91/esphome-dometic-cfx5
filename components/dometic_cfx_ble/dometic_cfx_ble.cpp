@@ -94,7 +94,7 @@ static const uint8_t SUBSCRIBE_ALL[][4] = {
     {0x07, 0x00, 0x06, 0x14},  // Controller Firmware Versions ASCII String MC1-HMI_2.1.1;MC1-FS_2.0.0;MC1_2.0.0
     {0x03, 0x00, 0x07, 0x14},
     // Group 1F (unknown - may contain power source)
-    {0x00, 0x00, 0x00, 0x1F},   // possible Power Mode = 1 ?
+    {0x00, 0x00, 0x00, 0x1F},   // possible Power Mode = 1 ? (01000000)
     // Group 18 params (unknown) ??History Group?? hour, day, week?
     {0x00, 0x00, 0x00, 0x18},
     {0x01, 0x00, 0x01, 0x18},
