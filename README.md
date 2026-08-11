@@ -26,6 +26,9 @@ Reverse engineered from BLE HCI snoop logs. The component communicates using Dom
 
 ## Installation
 
+Find your Dometic's BLE MAC Address by pairing your phone with the cooler. On the Device Details page the device's Bluetooth address should be listed.
+Alternatively installing nRF Connect on your mobile device, list nearby devices, look for a device named MC1_XXXXX under the name is the MAC address.
+
 Add to your ESPHome YAML:
 
 ```yaml
