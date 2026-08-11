@@ -42,7 +42,7 @@ const std::map<std::string, TopicInfo> TOPICS = {
     {"COMPARTMENT_0_SET_TEMPERATURE",      {{0x05, 0x00, 0x00, 0x1A}, "INT32_MILLIDEGREE_CELSIUS", "Compartment 1 set temp"}},
     {"COOLER_POWER",                       {{0x03, 0x00, 0x00, 0x1A}, "INT8_BOOLEAN",  "Cooler power"}},
     {"COMPARTMENT_0_POWER",                {{0x0B, 0x00, 0x00, 0x1A}, "INT8_BOOLEAN",  "Compartment 1 power"}},
-    {"BATTERY_VOLTAGE_LEVEL",              {{0x0C, 0x00, 0x00, 0x1A}, "INT32_MILLIVOLT","Battery voltage"}},
+    {"BATTERY_VOLTAGE_LEVEL",              {{0x0C, 0x00, 0x00, 0x1A}, "INT32_MILLIVOLT","Battery voltage"}},                     //Battery/supply voltage (V)
     {"POWER_SOURCE",                       {{0x10, 0x00, 0x00, 0x1A}, "POWER_SOURCE_TEXT", "Power source"}},
     {"BLUETOOTH_MODE",                     {{0x06, 0x00, 0x00, 0x1A}, "INT8_BOOLEAN",  "Bluetooth mode (unused)"}},
     {"COMPARTMENT_0_DOOR_OPEN",            {{0x07, 0x00, 0x00, 0x1A}, "INT8_BOOLEAN",  "Compartment 1 door open"}},
@@ -93,7 +93,7 @@ static const uint8_t SUBSCRIBE_ALL[][4] = {
     {0x07, 0x00, 0x00, 0x1A},  // DOOR_OPEN
     {0x08, 0x00, 0x00, 0x1A},  // battery+current  or is it Temp Range: -22°C to +20°C (10aaffff204e0000)
     {0x0B, 0x00, 0x00, 0x1A},  // compartment power
-    {0x0C, 0x00, 0x00, 0x1A},  // battery voltage
+    {0x0C, 0x00, 0x00, 0x1A},  // Battery/Supply voltage (V)
     {0x10, 0x00, 0x00, 0x1A},  // bluetooth mode
     {0x11, 0x00, 0x00, 0x1A},
     {0x12, 0x00, 0x00, 0x1A},  // might be Door alert
