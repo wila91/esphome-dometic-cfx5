@@ -51,6 +51,14 @@ const std::map<std::string, TopicInfo> TOPICS = {
     {"DEVICE_NAME",                        {{0x07, 0x00, 0x00, 0x1C}, "UTF8_STRING",   "Device name"}},
     {"FIRMWARE_VERSION",                   {{0x02, 0x00, 0x00, 0x00}, "UTF8_STRING",   "Firmware version"}},
     {"DEVICE_MODEL",                       {{0x07, 0x00, 0x01, 0x00}, "UTF8_STRING",   "Device model"}},
+// Newly Identified Topics
+    {"COMPARTMENT_0_TEMPERATURE_RANGE",    {{0x08, 0x00, 0x00, 0x1A}, "RAW",           "Temp min/max bounds"}},
+    {"COMPARTMENT_COUNT",                  {{0x00, 0x00, 0x01, 0x02}, "INT32_NUMBER",  "Compartment count"}},
+    {"ICEMAKER_COUNT",                     {{0x03, 0x00, 0x01, 0x02}, "INT32_NUMBER",  "Icemaker count"}},
+    {"DETAILED_FIRMWARE_VERSION",          {{0x07, 0x00, 0x06, 0x14}, "UTF8_STRING",   "Controller firmware details"}},
+    {"HARDWARE_MODEL_ID",                  {{0x1B, 0x00, 0x00, 0x00}, "INT32_NUMBER",  "Hardware model capacity ID"}},
+    {"COMPARTMENT_0_TEMP_HISTORY_JSON",    {{0x03, 0x00, 0x02, 0x18}, "UTF8_STRING",   "70-min temp history JSON"}},
+    {"COMPARTMENT_0_TEMP_HISTORY_BINARY",  {{0x04, 0x00, 0x02, 0x18}, "RAW",           "Binary representation of temperature 70-min history dataset"}},
 };
 
 // All subscribe params as sent by the official Dometic app (reverse engineered)
@@ -99,16 +107,16 @@ static const uint8_t SUBSCRIBE_ALL[][4] = {
     {0x00, 0x00, 0x00, 0x18},
     {0x01, 0x00, 0x01, 0x18},
     {0x02, 0x00, 0x01, 0x18},
-    {0x03, 0x00, 0x01, 0x18},
-    {0x00, 0x00, 0x02, 0x18},
-    {0x01, 0x00, 0x02, 0x18},
-    {0x02, 0x00, 0x02, 0x18},
-    {0x03, 0x00, 0x02, 0x18},
-    {0x04, 0x00, 0x02, 0x18},
-    {0x05, 0x00, 0x02, 0x18},
-    {0x06, 0x00, 0x02, 0x18},
-    {0x07, 0x00, 0x02, 0x18},
-    {0x08, 0x00, 0x02, 0x18},
+    {0x03, 0x00, 0x01, 0x18},   // HOUR:lsrcfg0,DAY:lsrcfg1,WEEK:lsrcfg2 ASCII string
+    {0x00, 0x00, 0x02, 0x18},   //= 01000000 lsrcfg0 (HOUR) Status Flag (1 = Valid / Ready) 
+    {0x01, 0x00, 0x02, 0x18},   //= "HOUR" broadcasts array automatically every 10 minutes
+    {0x02, 0x00, 0x02, 0x18},   //"mccc0ctemp -f 10m -t :1h10m" (Filter: 10 min, Timeframe: 1 hr 10 min)
+    {0x03, 0x00, 0x02, 0x18},   // = JSON Array ({"t":0, "i":600, "d":[...]}, 7 samples at 10-minute intervals) UTF8_STRING
+    {0x04, 0x00, 0x02, 0x18},   // = Binary Array (the raw hex twin of the JSON array) [04 00 02 18] really is a binary representation of the same dataset contained in [03 00 02 18]
+    {0x05, 0x00, 0x02, 0x18},   //possible = "DAY"
+    {0x06, 0x00, 0x02, 0x18},   //possible = Filter command for 24-hour logging (e.g., sample every 1 hour)
+    {0x07, 0x00, 0x02, 0x18},   //possible = DAY JSON Array (24 hours of historical temperatures)
+    {0x08, 0x00, 0x02, 0x18},   //possible = DAY Binary Array
     {0x09, 0x00, 0x02, 0x18},
     {0x0A, 0x00, 0x02, 0x18},
     {0x0B, 0x00, 0x02, 0x18},
