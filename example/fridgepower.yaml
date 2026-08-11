@@ -117,7 +117,14 @@ sensor:
     unit_of_measurement: "V"
     accuracy_decimals: 3
     icon: mdi:car-battery
-
+  
+  - platform: ble_client
+    ble_client_id: cfx_ble_client
+    name: "CFX BLE Signal Strength"
+    type: rssi
+    unit_of_measurement: "dBm"
+    icon: mdi:bluetooth-connect 
+    
 climate:
   - platform: dometic_cfx_ble
     dometic_cfx_ble_id: dometic_cfx_ble1
