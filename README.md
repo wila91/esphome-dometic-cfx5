@@ -78,6 +78,11 @@ Temperatures and voltages are encoded as `int32 LE / 1000`.
 
 - Dometic CFX5 35 firmware 2.0.0, model MC1 (MC1-HMI_2.1.1;MC1-FS_2.0.0;MC1_2.0.0)
 - esp32dev
+- Temperature reports and it is possible to change it.
+- Door reports closed/open
+- AC power reports right
+- <img width="420" height="603" alt="CFX5 35" src="https://github.com/user-attachments/assets/aa0cf48e-d234-4db8-8625-c369b90e5eec" />
+
 
 ## License
 
