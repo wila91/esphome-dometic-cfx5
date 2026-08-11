@@ -53,7 +53,7 @@ const std::map<std::string, TopicInfo> TOPICS = {
     {"DEVICE_MODEL",                       {{0x07, 0x00, 0x01, 0x00}, "UTF8_STRING",   "Device model"}},
 // Newly Identified Topics
     {"COMPARTMENT_0_TEMPERATURE_RANGE",    {{0x08, 0x00, 0x00, 0x1A}, "RAW",           "Temp min/max bounds"}},
-    {"BATTERY_PROTECTION_LEVEL",           {{0x0D, 0x00, 0x00, 0x1A}, "BATTERY_PROTECTION_TEXT", "Battery protection level"}},
+    {"BATTERY_PROTECTION_LEVEL",           {{0x0D, 0x00, 0x00, 0x1A}, "INT8_NUMBER", "Battery protection level"}},
     {"COMPARTMENT_COUNT",                  {{0x00, 0x00, 0x01, 0x02}, "INT32_NUMBER",  "Compartment count"}},
     {"ICEMAKER_COUNT",                     {{0x03, 0x00, 0x01, 0x02}, "INT32_NUMBER",  "Icemaker count"}},
     {"DETAILED_FIRMWARE_VERSION",          {{0x07, 0x00, 0x06, 0x14}, "UTF8_STRING",   "Controller firmware details"}},
