@@ -120,6 +120,56 @@ static const uint8_t SUBSCRIBE_ALL[][4] = {
     {0x09, 0x00, 0x02, 0x18},
     {0x0A, 0x00, 0x02, 0x18},
     {0x0B, 0x00, 0x02, 0x18},
+
+    // ============================================================
+    // DIAGNOSTIC SWEEP — hunting for "battery protection mode".
+    // None of these are confirmed. Two sources:
+    //  1) Leaf IDs read back from the device's own parameter
+    //     manifest at topic [01 00 00 00] (seen in test3-living-room
+    //     log around 22:47:30 — a 132-byte value that decodes into
+    //     32 4-byte (p1,p2,p3,p4) tuples, several of which exactly
+    //     matched topics already in this file, which is what confirms
+    //     the byte layout).
+    //  2) Gap-filling unused p1 slots in groups that already hold
+    //     other battery/power fields (0x00 00 1A) or that look
+    //     purpose-built for a 3-way setting (0x0A 02 has THREE
+    //     sibling groups: p2=00/01/02 — a very LOW/MED/HIGH-shaped
+    //     layout).
+    // Delete this block once the real topic is identified and named.
+    {0x01, 0x00, 0x01, 0x00},  // sibling of DEVICE_MODEL (07 00 01 00)
+    {0x01, 0x00, 0x03, 0x02},  // brand-new group, unexplored
+    {0x01, 0x00, 0x09, 0x02},  // brand-new group, unexplored
+    {0x01, 0x00, 0x0A, 0x02},  // brand-new group w/ 3 siblings —
+    {0x01, 0x01, 0x0A, 0x02},  //   shaped exactly like LOW/MED/HIGH
+    {0x01, 0x02, 0x0A, 0x02},  //   as three parallel flags
+    {0x01, 0x00, 0x06, 0x14},
+    {0x01, 0x00, 0x07, 0x14},
+    {0x01, 0x00, 0x08, 0x14},  // brand-new group, unexplored
+    {0x01, 0x00, 0x03, 0x17},  // brand-new TOP-LEVEL group 0x17
+    {0x01, 0x00, 0x00, 0x1C},
+    {0x01, 0x00, 0x00, 0x1F},  // sibling of the "possible Power Mode" param
+    // Gap-fill: unused p1 slots in the realtime group (00 00 1A) —
+    // same group as battery voltage, power source, door, compressor.
+    {0x00, 0x00, 0x00, 0x1A},
+    {0x02, 0x00, 0x00, 0x1A},
+    {0x09, 0x00, 0x00, 0x1A},
+    {0x0A, 0x00, 0x00, 0x1A},
+    {0x0D, 0x00, 0x00, 0x1A},
+    {0x0E, 0x00, 0x00, 0x1A},
+    {0x0F, 0x00, 0x00, 0x1A},
+    {0x13, 0x00, 0x00, 0x1A},
+    {0x14, 0x00, 0x00, 0x1A},
+    {0x15, 0x00, 0x00, 0x1A},
+    // Gap-fill: unused p1 slots in the mystery "power mode" group (0x1F)
+    {0x02, 0x00, 0x00, 0x1F},
+    {0x03, 0x00, 0x00, 0x1F},
+    // Gap-fill: a few unused slots in the root status group (00 00 00)
+    {0x0A, 0x00, 0x00, 0x00},
+    {0x0D, 0x00, 0x00, 0x00},
+    {0x13, 0x00, 0x00, 0x00},
+    // ============================================================
+
+
 };
 static const size_t SUBSCRIBE_ALL_COUNT = sizeof(SUBSCRIBE_ALL) / sizeof(SUBSCRIBE_ALL[0]);
 
