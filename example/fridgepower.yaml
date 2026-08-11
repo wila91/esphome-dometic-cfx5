@@ -112,7 +112,7 @@ sensor:
   - platform: dometic_cfx_ble
     dometic_cfx_ble_id: dometic_cfx_ble1
     type: BATTERY_VOLTAGE_LEVEL
-    name: "CFX Battery Voltage"
+    name: "CFX Supply Voltage"
     id: cfx_spannung
     unit_of_measurement: "V"
     accuracy_decimals: 3
