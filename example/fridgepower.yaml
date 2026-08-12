@@ -129,7 +129,7 @@ sensor:
     dometic_cfx_ble_id: dometic_cfx_ble1
     type: BATTERY_PROTECTION_LEVEL
     name: "CFX Battery Protection Raw"
-    icon: mdi:battery-shield
+    icon: mdi:battery-check-outline
     id: cfx_battery_protection_raw
     internal: true # Hides the raw '0/1/2' number from HA
     
@@ -168,7 +168,7 @@ text_sensor:
 
   - platform: template
     name: "CFX Battery Protection"
-    icon: mdi:battery-shield
+    icon: mdi:battery-check-outline
     lambda: |-
       if (id(cfx_battery_protection_raw).state == 0.0) {
         return {"Low"};
