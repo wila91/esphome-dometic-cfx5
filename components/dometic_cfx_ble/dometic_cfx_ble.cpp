@@ -275,6 +275,16 @@ void DometicCfxBle::send_number(const std::string &topic, float value) {
   this->send_pub(topic, payload);
 }
 
+// battery protection mode
+void DometicCfxBle::send_enum(const std::string &topic, uint8_t value) {
+  // The Dometic CFX5 encodes enums as 32-bit little-endian integers
+  int32_t val32 = value;
+  std::vector<uint8_t> payload(4);
+  memcpy(payload.data(), &val32, 4);
+  this->send_pub(topic, payload);
+}
+
+
 // ----------------- GATTC callbacks ------------------------------------------
 
 void DometicCfxBle::gattc_event_handler(esp_gattc_cb_event_t event,
@@ -480,6 +490,21 @@ void DometicCfxBle::update_entity_(const std::string &topic,
     it->second->publish_state(s);
   }
 
+  // Select battery protection mode
+  if (auto it = selects_.find(topic); it != selects_.end()) {
+    float v = this->decode_to_float_(value, type_hint);
+    if (!std::isnan(v)) {
+      int mode = static_cast<int>(v);
+      std::string mode_str = "Unknown";
+      if (mode == 0) mode_str = "Low";
+      else if (mode == 1) mode_str = "Medium";
+      else if (mode == 2) mode_str = "High";
+
+      ESP_LOGD(TAG, "%s = %s", topic.c_str(), mode_str.c_str());
+      it->second->publish_state(mode_str);
+    }
+  }
+
   // Update internal state for climate
   if (topic == "COMPARTMENT_0_MEASURED_TEMPERATURE") {
     this->cfx_measured_temp_ = this->decode_to_float_(value, type_hint);
@@ -499,6 +524,8 @@ void DometicCfxBle::update_entity_(const std::string &topic,
       c->update_state(this->cfx_power_, this->cfx_set_temp_, this->cfx_measured_temp_);
     }
   }
+
+  
 }
 
 // ----------------- Decode ---------------------------------------------------
@@ -614,6 +641,19 @@ void DometicCfxBleNumber::control(float value) {
     return;
   }
   this->parent_->send_number(this->topic_, value);
+  this->publish_state(value);
+}
+
+// Battery protection mode select
+void DometicCfxBleSelect::control(const std::string &value) {
+  if (this->parent_ == nullptr) return;
+  
+  uint8_t val = 0;
+  if (value == "Low") val = 0;
+  else if (value == "Medium") val = 1;
+  else if (value == "High") val = 2;
+
+  this->parent_->send_enum(this->topic_, val);
   this->publish_state(value);
 }
 
