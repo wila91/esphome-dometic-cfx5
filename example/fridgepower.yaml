@@ -147,12 +147,27 @@ binary_sensor:
     device_class: door
     icon: mdi:door-open
 
+#  - platform: dometic_cfx_ble
+#    dometic_cfx_ble_id: dometic_cfx_ble1
+#    type: DOOR_ALERT
+#    name: "CFX5 Door Alarm"
+#    device_class: problem
+#    icon: mdi:alarm-light
+
   - platform: dometic_cfx_ble
     dometic_cfx_ble_id: dometic_cfx_ble1
     type: DOOR_ALERT
-    name: "CFX Door Alarm"
+    name: "CFX5 Door Alarm"
     device_class: problem
-    icon: mdi:alarm-light
+    icon: mdi:door-open
+
+  - platform: dometic_cfx_ble
+    dometic_cfx_ble_id: dometic_cfx_ble1
+    type: TEMP_ALERT
+    name: "CFX5 Temp Out of Bounds"
+    device_class: heat
+    icon: mdi:thermometer-alert
+
 
 text_sensor:
   - platform: dometic_cfx_ble
@@ -168,7 +183,7 @@ text_sensor:
     icon: mdi:power-plug
 
   - platform: template
-    name: "CFX Battery Protection"
+    name: "CFX5 Battery Protection"
     icon: mdi:battery-check-outline
     lambda: |-
       if (id(cfx_battery_protection_raw).state == 0.0) {
@@ -187,5 +202,5 @@ select:
   - platform: dometic_cfx_ble
     dometic_cfx_ble_id: dometic_cfx_ble1
     type: BATTERY_PROTECTION_LEVEL
-    name: "CFX Battery Protection"
+    name: "CFX5 Battery Protection"
     icon: mdi:battery-check-outline    
