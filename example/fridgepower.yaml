@@ -124,7 +124,8 @@ sensor:
     type: rssi
     unit_of_measurement: "dBm"
     icon: mdi:bluetooth-connect 
-        
+ 
+ #Reads the status       
   - platform: dometic_cfx_ble
     dometic_cfx_ble_id: dometic_cfx_ble1
     type: BATTERY_PROTECTION_LEVEL
@@ -180,3 +181,11 @@ text_sensor:
         return {"Unknown"};
       }
   #  update_interval: 15s
+
+#Selects the protection mode
+select:
+  - platform: dometic_cfx_ble
+    dometic_cfx_ble_id: dometic_cfx_ble1
+    type: BATTERY_PROTECTION_LEVEL
+    name: "CFX Battery Protection"
+    icon: mdi:battery-check-outline    
