@@ -104,7 +104,7 @@ sensor:
   - platform: dometic_cfx_ble
     dometic_cfx_ble_id: dometic_cfx_ble1
     type: COMPARTMENT_0_MEASURED_TEMPERATURE
-    name: "CFX Actual Temperature"
+    name: "CFX5 Actual Temperature"
     unit_of_measurement: "°C"
     accuracy_decimals: 1
     icon: mdi:thermometer
@@ -112,7 +112,7 @@ sensor:
   - platform: dometic_cfx_ble
     dometic_cfx_ble_id: dometic_cfx_ble1
     type: BATTERY_VOLTAGE_LEVEL
-    name: "CFX Supply Voltage"
+    name: "CFX5 Supply Voltage"
     id: cfx_spannung
     unit_of_measurement: "V"
     accuracy_decimals: 3
@@ -120,7 +120,7 @@ sensor:
   
   - platform: ble_client
     ble_client_id: cfx_ble_client
-    name: "CFX BLE Signal Strength"
+    name: "CFX5 BLE Signal Strength"
     type: rssi
     unit_of_measurement: "dBm"
     icon: mdi:bluetooth-connect 
@@ -128,7 +128,7 @@ sensor:
   - platform: dometic_cfx_ble
     dometic_cfx_ble_id: dometic_cfx_ble1
     type: BATTERY_PROTECTION_LEVEL
-    name: "CFX Battery Protection Raw"
+    name: "CFX5 Battery Protection Raw"
     icon: mdi:battery-check-outline
     id: cfx_battery_protection_raw
     internal: true # Hides the raw '0/1/2' number from HA
@@ -136,13 +136,13 @@ sensor:
 climate:
   - platform: dometic_cfx_ble
     dometic_cfx_ble_id: dometic_cfx_ble1
-    name: "CFX Fridge"
+    name: "CFX5 Fridge"
 
 binary_sensor:
   - platform: dometic_cfx_ble
     dometic_cfx_ble_id: dometic_cfx_ble1
     type: COMPARTMENT_0_DOOR_OPEN
-    name: "CFX Door Open"
+    name: "CFX5 Door Open"
     device_class: door
     icon: mdi:door-open
 
@@ -157,13 +157,13 @@ text_sensor:
   - platform: dometic_cfx_ble
     dometic_cfx_ble_id: dometic_cfx_ble1
     type: FIRMWARE_VERSION
-    name: "CFX Firmware"
+    name: "CFX5 Firmware"
     icon: mdi:chip
 
   - platform: dometic_cfx_ble
     dometic_cfx_ble_id: dometic_cfx_ble1
     type: POWER_SOURCE
-    name: "CFX Power Source"
+    name: "CFX5 Power Source"
     icon: mdi:power-plug
 
   - platform: template
