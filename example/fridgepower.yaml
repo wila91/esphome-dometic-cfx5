@@ -159,7 +159,7 @@ binary_sensor:
     type: DOOR_ALERT
     name: "CFX5 Door Alarm"
     device_class: problem
-    icon: mdi:door-open
+    icon: mdi:alarm-light
 
   - platform: dometic_cfx_ble
     dometic_cfx_ble_id: dometic_cfx_ble1
