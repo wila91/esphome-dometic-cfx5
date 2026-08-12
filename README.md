@@ -87,6 +87,7 @@ Temperatures and voltages are encoded as `int32 LE / 1000`.
 - Firmware same as app reports
 - AC power reports right
 - Battery protection mode Low/Medium/High
+- Temperature ±5°C alarm
 <img width="420" height="807" alt="CFX5 35" src="https://github.com/user-attachments/assets/a40cba9d-ccac-4ce6-a256-b760caa6e827" />
 
 
