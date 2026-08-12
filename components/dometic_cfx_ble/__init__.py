@@ -102,6 +102,8 @@ TOPIC_TYPES = [
     "DC_CURRENT_HISTORY_HOUR",
     "DC_CURRENT_HISTORY_DAY",
     "DC_CURRENT_HISTORY_WEEK",
+    "DOOR_ALERT",
+    "TEMP_ALERT",
 ]
 
 def validate_topic_type(value):
