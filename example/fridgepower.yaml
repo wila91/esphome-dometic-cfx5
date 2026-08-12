@@ -165,7 +165,7 @@ binary_sensor:
     dometic_cfx_ble_id: dometic_cfx_ble1
     type: TEMP_ALERT
     name: "CFX5 Temp Out of Bounds"
-    device_class: heat
+    device_class: problem
     icon: mdi:thermometer-alert
 
 
