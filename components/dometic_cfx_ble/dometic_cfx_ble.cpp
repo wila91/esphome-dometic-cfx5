@@ -452,15 +452,42 @@ void DometicCfxBle::update_entity_(const std::string &topic,
     return;
   }
 
-  if (topic == "DOOR_ALERT") {
-    bool alarm = !value.empty();
-    ESP_LOGD(TAG, "DOOR_ALERT = %s (raw len=%u)", alarm ? "ON" : "OFF", (unsigned)value.size());
-    if (auto it = binary_sensors_.find(topic); it != binary_sensors_.end()) {
-      it->second->publish_state(alarm);
+  //Old DOOR_ALERT replaced by ACTIVE_ALARMS
+//  if (topic == "DOOR_ALERT") {
+//    bool alarm = !value.empty();
+//    ESP_LOGD(TAG, "DOOR_ALERT = %s (raw len=%u)", alarm ? "ON" : "OFF", (unsigned)value.size());
+//    if (auto it = binary_sensors_.find(topic); it != binary_sensors_.end()) {
+//      it->second->publish_state(alarm);
+//    }
+//    return;
+//  }
+
+// --- New ALARM SCANNER ---
+  if (topic == "ACTIVE_ALARMS") {
+    bool door_alarm = false;
+    bool temp_alarm = false;
+
+    // Scan the payload array for known 2-byte error codes
+    for (size_t i = 0; i < value.size(); i += 2) {
+      if (value[i] == 0x17) door_alarm = true;
+      if (value[i] == 0x1B) temp_alarm = true;
+    }
+
+    ESP_LOGD(TAG, "ALARMS: Door=%s, Temp=%s (raw len=%u)", 
+             door_alarm ? "ON" : "OFF", 
+             temp_alarm ? "ON" : "OFF", 
+             (unsigned)value.size());
+
+    if (auto it = binary_sensors_.find("DOOR_ALERT"); it != binary_sensors_.end()) {
+      it->second->publish_state(door_alarm);
+    }
+    if (auto it = binary_sensors_.find("TEMP_ALERT"); it != binary_sensors_.end()) {
+      it->second->publish_state(temp_alarm);
     }
     return;
   }
-
+  // ------------------------------
+  
   if (auto it = binary_sensors_.find(topic); it != binary_sensors_.end()) {
     bool v = this->decode_to_bool_(value);
     ESP_LOGD(TAG, "%s = %s", topic.c_str(), v ? "ON" : "OFF");
