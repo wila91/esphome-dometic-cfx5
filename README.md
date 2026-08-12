@@ -16,12 +16,16 @@ Reverse engineered from BLE HCI snoop logs. The component communicates using Dom
 | CFX Fridge | Climate | Current + target temperature, on/off control |
 | CFX Door Open | Binary sensor | Door open/closed state |
 | CFX Door Alarm | Binary sensor | Door open > 3 min alarm |
+| CFX Temperature Alarm | Binary sensor | Temperature ±5°C from setpoint |
 | CFX Supply Voltage | Sensor | Battery/supply voltage (V) |
 | CFX Actual Temperature | Sensor | Measured compartment temperature (°C) |
 | CFX Firmware | Text sensor | Firmware version string |
 | CFX Power Source | Text sensor | Power source: AC or DC |
+| CFX Firmware version | Text sensor | Firmware version |
+| CFX Battery protection status | Text sensor | Low / Medium / High |
+| CFX Battery protection status | Select | Low / Medium / High |
 | CFX5 Re-Pair | Button | Clear BLE bond and reboot |
-| Fridge Current | Sensor | DC current draw (INA226) |
+| Fridge Current | Sensor | DC current draw (Requires external INA226) |
 | Fridge Power | Sensor | Calculated power in Watts (From INA226) |
 
 ## Installation
