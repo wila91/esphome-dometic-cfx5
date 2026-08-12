@@ -179,4 +179,4 @@ text_sensor:
       } else {
         return {"Unknown"};
       }
-    update_interval: 15s
+  #  update_interval: 15s
