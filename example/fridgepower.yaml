@@ -124,6 +124,13 @@ sensor:
     type: rssi
     unit_of_measurement: "dBm"
     icon: mdi:bluetooth-connect 
+        
+  - platform: dometic_cfx_ble
+    dometic_cfx_ble_id: dometic_cfx_ble1
+    type: BATTERY_PROTECTION_LEVEL
+    name: "CFX Battery Protection Raw"
+    id: cfx_battery_protection_raw
+    internal: true # Hides the raw '0/1/2' number from HA
     
 climate:
   - platform: dometic_cfx_ble
@@ -157,3 +164,18 @@ text_sensor:
     type: POWER_SOURCE
     name: "CFX Power Source"
     icon: mdi:power-plug
+
+  - platform: template
+    name: "CFX Battery Protection"
+    icon: mdi:battery-shield
+    lambda: |-
+      if (id(cfx_battery_protection_raw).state == 0.0) {
+        return {"Low"};
+      } else if (id(cfx_battery_protection_raw).state == 1.0) {
+        return {"Medium"};
+      } else if (id(cfx_battery_protection_raw).state == 2.0) {
+        return {"High"};
+      } else {
+        return {"Unknown"};
+      }
+    update_interval: 15s
