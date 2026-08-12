@@ -202,5 +202,5 @@ select:
   - platform: dometic_cfx_ble
     dometic_cfx_ble_id: dometic_cfx_ble1
     type: BATTERY_PROTECTION_LEVEL
-    name: "CFX5 Battery Protection"
+    name: "CFX5 Battery Protection Mode"
     icon: mdi:battery-check-outline    
