@@ -18,6 +18,8 @@
 #include "esphome/components/text_sensor/text_sensor.h"
 #include "esphome/components/climate/climate.h"
 
+#include "esphome/components/select/select.h"
+
 #include <cstdint>
 #include <cstring>
 #include <queue>
